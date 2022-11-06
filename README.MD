@@ -4,25 +4,25 @@ Cinject is a project that executes dll injection in the Windows kernel. It is ch
 
 
 
-##Objectives
+## Objectives
 
 Temporarily test that the Apex Legends protected by EAC can be injected in 1909 (Os version 18363)
 
 
 
-##How to find KeSuspendThread and KeResumeThread?
+## How to find KeSuspendThread and KeResumeThread?
 
 You need to open 'windbg' in the target system as an administrator to open 'Kernel Debug', enter 'u KeSuspendThread' to view the KeSuspendThread function address and disassembly, and record the characteristic code. The same is true for KeResumeThread, and finally in EipInject Cpp Modify the signature in the 'FindKeSuspendThread' and 'FindKeResumeThread' functions.
 
 
 
-##How to modify OFFSET_ KTRAP_ FRAME？
+## How to modify OFFSET_ KTRAP_ FRAME？
 
 It is in EipInject H 'is the same as above. You also need the windbg administrator to start and enable kernel debugging, and type' dt_ KTHREAD ` View`_ KTRAP_ The offset of FRAME 'can be modified
 
 
 
-##Switch APC and EIP modes
+## Switch APC and EIP modes
 
 In the 'injectDll' function, you can use 'APCExecuteFunction' or 'EipExceptionFunction' to switch between different execution methods
 
