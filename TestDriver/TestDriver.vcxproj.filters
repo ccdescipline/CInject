@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Driver Files">
+      <UniqueIdentifier>{8E41214B-6785-4CFE-B992-037D68949A14}</UniqueIdentifier>
+      <Extensions>inf;inv;inx;mof;mc;</Extensions>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{c30d913e-d1c9-4c05-9a7a-6a67fae81cb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ApcInject">
+      <UniqueIdentifier>{96f85b06-3b80-48af-98d1-2b3ca73a7736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\file">
+      <UniqueIdentifier>{d329df13-1090-4de1-aaac-73f1a59d98f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PeHelper">
+      <UniqueIdentifier>{fb2cb5f5-e36d-44a1-9cb7-233ce4950d2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EipInject">
+      <UniqueIdentifier>{e975d4e8-4c96-488b-8c04-5bc022414665}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Inf Include="TestDriver.inf">
+      <Filter>Driver Files</Filter>
+    </Inf>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ApcInject.cpp">
+      <Filter>ApcInject</Filter>
+    </ClCompile>
+    <ClCompile Include="filehelp.cpp">
+      <Filter>utils\file</Filter>
+    </ClCompile>
+    <ClCompile Include="PeHelper.cpp">
+      <Filter>PeHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="EipInject.cpp">
+      <Filter>EipInject</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="utils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ApcInject.h">
+      <Filter>ApcInject</Filter>
+    </ClInclude>
+    <ClInclude Include="filehelp.h">
+      <Filter>utils\file</Filter>
+    </ClInclude>
+    <ClInclude Include="PeHelper.h">
+      <Filter>PeHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="EipInject.h">
+      <Filter>EipInject</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
