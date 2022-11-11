@@ -1,6 +1,6 @@
 # Cinject
 
-Cinject is a project that executes dll injection in the Windows kernel. It is characterized by no modules and no threads. It uses remote stretching pe to achieve no modules. It uses APC or SupendThread to replace Rip registers to hijack threads to achieve no threads. The running environment was tested in 1909. If you want to run in other versions, you need to modify and find the function signatures of 'KeSuspendThread' and 'KeResumeThread' and 'OFFSET_ KTRAP_ I will tell you how to modify the offset of FRAME 'below. The injected dll also requires attributes ->code generation ->runtime multi-threaded MT. In short, other dll modules in the import table of the dll must also exist in the target process!
+Cinject is a project that executes dll injection in the Windows kernel. It is characterized by no modules and no threads. It uses remote stretching pe to achieve no modules. It uses APC or SupendThread to replace Rip registers to hijack threads to achieve no threads. The running environment was tested in 1909. If you want to run in other versions, you need to modify and find the function signatures of `KeSuspendThread` and `KeResumeThread`. I will tell you how to modify the offset of `OFFSET_KTRAP_FRAME` below. The injected dll also requires attributes ->code generation ->runtime multi-threaded MT. In short, other dll modules in the import table of the dll must also exist in the target process!
 
 
 
@@ -12,19 +12,19 @@ Temporarily test that the Apex Legends protected by EAC can be injected in 1909 
 
 ## How to find KeSuspendThread and KeResumeThread?
 
-You need to open 'windbg' in the target system as an administrator to open 'Kernel Debug', enter 'u KeSuspendThread' to view the KeSuspendThread function address and disassembly, and record the characteristic code. The same is true for KeResumeThread, and finally in EipInject Cpp Modify the signature in the 'FindKeSuspendThread' and 'FindKeResumeThread' functions.
+You need to open `windbg` in the target system as an administrator to open `Kernel Debug`, enter `u KeSuspendThread` to view the KeSuspendThread function address and disassembly, and record the characteristic code. The same is true for KeResumeThread, and finally in EipInject Cpp Modify the signature in the `FindKeSuspendThread` and `FindKeResumeThread` functions.
 
 
 
 ## How to modify OFFSET_ KTRAP_ FRAME？
 
-It is in EipInject H 'is the same as above. You also need the windbg administrator to start and enable kernel debugging, and type' dt_ KTHREAD ` View`_ KTRAP_ The offset of FRAME 'can be modified
+It is in EipInject H 'is the same as above. You also need the windbg administrator to start and enable kernel debugging, and type `dt_ KTHREAD` View `_KTRAP_FRAME` The offset can be modified
 
 
 
 ## Switch APC and EIP modes
 
-In the 'injectDll' function, you can use 'APCExecuteFunction' or 'EipExceptionFunction' to switch between different execution methods
+In the `injectDll` function, you can use `APCExecuteFunction` or `EipExceptionFunction` to switch between different execution methods
 
 # Cinject
 Cinject 是在windows内核执行dll注入的一个项目，特点是无模块和无线程，使用远程拉伸pe实现无模块，使用APC 或 SupendThread 替换Rip寄存器劫持线程实现无线程，运行环境在1909得到测试，如想在其他版本运行，需要修改寻找  `KeSuspendThread` 和 `KeResumeThread` 函数特征码和 `OFFSET_KTRAP_FRAME` 的偏移，我会在下文告诉大家如何修改。注入的dll也有要求，属性->代码生成->运行库 多线程MT。简单来说就是该dll的导入表里的其他dll模块在目标进程里也必须存在！
