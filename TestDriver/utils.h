@@ -339,5 +339,6 @@ PEPROCESS GetEprocessByName(LPCWSTR exeName);
 NTSTATUS ANSIToUNCODESTRING(LPCSTR source, PUNICODE_STRING dst);
 PBYTE FindPattern_Wrapper(PUCHAR start, SIZE_T size, const char* Pattern);
 NTSTATUS RemoteAllcateMemory(PEPROCESS process, SIZE_T size, PVOID* addr);
+NTSTATUS RemoteFreeMemory(PEPROCESS process, PVOID addr, SIZE_T size);
 bool GetNtoskrnlBase(PVOID* ntoskrnlBase, PULONG64 size);
 HANDLE EnumProcessByZwQuerySysInfo(PUNICODE_STRING processName);

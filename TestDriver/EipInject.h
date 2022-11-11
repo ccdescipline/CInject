@@ -20,7 +20,7 @@ extern FuncType KeResumeThread;
 
 
 
-void EipExcuteFuntion(PEPROCESS process, PVOID func, ULONG64 modulebase);
+void EipExcuteFuntion(PEPROCESS process, PVOID func, ULONG64 modulebase, LONGLONG cleartimeSecond);
 PETHREAD GetFirstThread(PEPROCESS tempep);
 bool IsGuiThread(PETHREAD thread);
 KTRAP_FRAME MyGetThreadContext(PETHREAD thread);

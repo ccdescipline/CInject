@@ -174,6 +174,31 @@ NTSTATUS RemoteAllcateMemory(PEPROCESS process, SIZE_T size,PVOID * addr) {
     return STATUS_SUCCESS;
 }
 
+NTSTATUS RemoteFreeMemory(PEPROCESS process,PVOID addr,SIZE_T size) {
+    //附加
+    KAPC_STATE KAPC;
+    if (!process) {
+        DbgPrint("准备附加申请内存失败");
+        return STATUS_UNSUCCESSFUL;
+    }
+
+    KeStackAttachProcess(process, &KAPC);
+
+    memset(addr, 0, size);
+    NTSTATUS freestatus =  NtFreeVirtualMemory(NtCurrentProcess(),&addr, &size, MEM_RELEASE);
+
+    if (!NT_SUCCESS(freestatus)) {
+        DbgPrint("释放失败");
+        return STATUS_UNSUCCESSFUL;
+    }
+
+    DbgPrint("释放内存 !");
+
+    KeUnstackDetachProcess(&KAPC);
+
+    return STATUS_SUCCESS;
+}
+
 bool GetNtoskrnlBase(PVOID* ntoskrnlBase, PULONG64 size) {
     //PVOID 
     ULONG bytes = 0;

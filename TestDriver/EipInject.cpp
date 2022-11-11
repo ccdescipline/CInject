@@ -87,7 +87,7 @@ void initKethreadFunc() {
 	DbgPrint("KeResumeThread : %p", KeResumeThread);
 }
 
-void EipExcuteFuntion(PEPROCESS process, PVOID func,ULONG64 modulebase)
+void EipExcuteFuntion(PEPROCESS process, PVOID func,ULONG64 modulebase,LONGLONG cleartimeSecond)
 {
 	if ( !KeSuspendThread || !KeResumeThread) {
 		DbgPrint("KeSuspendThread 或 KeResumeThread 未找到");
@@ -164,4 +164,11 @@ void EipExcuteFuntion(PEPROCESS process, PVOID func,ULONG64 modulebase)
 
 	//恢复线程
 	KeResumeThread(thread);
+
+	//等待30秒，清空shellcode
+	LARGE_INTEGER li = { 0 };
+	li.QuadPart = -10000 * 1000 * cleartimeSecond;
+	KeDelayExecutionThread(KernelMode, NULL, &li);
+	RemoteFreeMemory(process, virtualaddr, sizeof(shellcode));
+	DbgPrint("shellcode 清空！");
 }

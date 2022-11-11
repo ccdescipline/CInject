@@ -116,11 +116,11 @@ void injectDll(LPCWSTR procName, PVOID filebuffer, ULONG64 filesize) {
 	RemoteLoadPeData(process, filebuffer,filesize,&entrypoint,&moduleBase);
 
 	//APC执行函数
-	APCExecuteFunction(process, entrypoint,(ULONG64)moduleBase);
+	//APCExecuteFunction(process, entrypoint,(ULONG64)moduleBase);
 
 
 	//Eip执行函数
-	//EipExcuteFuntion(process, entrypoint,(ULONG64)moduleBase);
+	EipExcuteFuntion(process, entrypoint,(ULONG64)moduleBase,30);
 	
 }
 
