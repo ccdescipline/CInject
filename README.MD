@@ -34,6 +34,7 @@ Cinject 是在windows内核执行dll注入的一个项目，特点是无模块�
 
 ## 怎样寻找 KeSuspendThread 和 KeResumeThread？
 您需要在目标系统中以管理员方式打开 `windbg` 开启 `Kernel Debug` 输入 ` u KeSuspendThread `即可查看 KeSuspendThread 函数地址和反汇编，记录下特征码即可，KeResumeThread 也是如此 `u KeResumeThread ` ,最后在EipInject.cpp修改`FindKeSuspendThread` 和 `FindKeResumeThread`函数里的特征码即可。
+![](https://raw.githubusercontent.com/ccdescipline/CInject/master/Img/findKeSuspendThread.PNG)
 
 ## 怎样修改 OFFSET_KTRAP_FRAME？
 它在` EipInject.h `中 同上，也需要windbg管理员启动并开启内核调试，键入 `dt _KTHREAD` 查看 `_KTRAP_FRAME`的偏移，修改即可
